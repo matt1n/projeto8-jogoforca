@@ -1,0 +1,72 @@
+.root{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.corpo{
+    margin-top: 50px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.forcaBotaoPalavra{
+    display: flex;
+    margin-bottom: 20px;
+}
+.forcaBotaoPalavra img{
+    width: 400px;
+}
+.botaoPalavra{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 100px;
+}
+
+.palavraForca{
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.ganhou {
+    color: green;
+}
+
+.perdeu {
+    color: red;
+}
+
+.botoesLetras {
+    width: 650px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.botoesLetras button{
+    
+    width: 40px;
+    height: 40px;
+    margin: 4px 4px;
+}
+
+.desabilitado {
+    background-color: rgb(134, 134, 134);
+    border-radius: 5px;
+    border: none;
+
+}
+
+.inputChutarPalavra input{
+    margin: 0 20px;
+}
+
+.inputChutarPalavra button{
+    background-color: rgb(199, 255, 255);
+    border: 1px solid rgb(100, 100, 255);
+    border-radius: 3px;
+    height: 30px;
+}
