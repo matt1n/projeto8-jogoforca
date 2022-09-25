@@ -15,8 +15,7 @@ export default function App() {
   const [palavra,setPalavra] = useState('')
   const [palavraOculta, setPalavraOculta] = useState('')
   const [palavraNormalizada, setPalavraNormalizada] = useState('')
-  const [classeBotaoLetra, setClasseBotaoLetra] = useState('desabilitado')
-  const [teste, setTeste] = useState(true)
+  const [desabilita, setDesabilita] = useState(true)
   const [palavraEscrita, setPalavraEscrita] = useState('')
   const [letrasClicadas, setletrasClicadas] = useState([])
   const [erros, setErros] = useState([])
@@ -24,7 +23,7 @@ export default function App() {
   const [palavraNoFim, setPalavraNoFim] = useState('palavraForca')
   const arrayImagens = [forca0, forca1, forca2, forca3, forca4, forca5, forca6]
   
-  function apertaBotao(indexItemEscolhido){
+  function escolherPalavra(indexItemEscolhido){
     const palavraNova = palavras.filter((p, idx)=> idx === indexItemEscolhido)
     const palavraNormal = palavraNova[0].normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     setPalavraNormalizada(palavraNormal)
@@ -32,8 +31,7 @@ export default function App() {
     setImagem(forca0)
     setPalavraOculta(palavraNova[0].replace(/[^0]/g ,'_ '))
     console.log(palavraNova[0],palavraNova[0].replace(/[^0]/g ,'_ '))
-    setTeste(false)
-    setClasseBotaoLetra('')
+    setDesabilita(false)
     setletrasClicadas([])
     setPalavraNoFim('palavraForca')
     setErros([])
@@ -54,7 +52,7 @@ export default function App() {
       if (palavraJunta===palavraNormalizada) {
         setPalavraOculta(palavra)
         setPalavraNoFim(`palavraForca ganhou`)
-        setTeste(true)
+        setDesabilita(true)
       }
     } else {
       const novoErro = [...erros, letra]
@@ -65,7 +63,7 @@ export default function App() {
         setImagem(forca6)
         setPalavraOculta(palavra)
         setPalavraNoFim(`palavraForca perdeu`)
-        setTeste(true)
+        setDesabilita(true)
       }
     }
   }
@@ -77,13 +75,13 @@ export default function App() {
       console.log('hehehehe')
       setPalavraOculta(palavra)
       setPalavraNoFim(`palavraForca ganhou`)
-      setTeste(true)
+      setDesabilita(true)
     } else {
       console.log(`perdeu!!!!! a palavra era ${palavra}`)
       setImagem(forca6)
       setPalavraOculta(palavra)
       setPalavraNoFim(`palavraForca perdeu`)
-      setTeste(true)
+      setDesabilita(true)
     }
     setPalavraEscrita('')
   }
@@ -91,19 +89,19 @@ export default function App() {
   return(
     <div className="corpo">
       <div className="forcaBotaoPalavra">
-        <img src={imagem} alt="Forca"></img>
+        <img data-identifier="game-image" src={imagem} alt="Forca"></img>
         <div className="botaoPalavra">
-          <button onClick={()=>apertaBotao(Math.floor(Math.random() * 231))} className="escolherPalavra">Escolher Palavra</button>
-          <span className={palavraNoFim}>{palavraOculta}</span>
+          <button data-identifier="choose-word" onClick={()=>escolherPalavra(Math.floor(Math.random() * 231))} className="escolherPalavra">Escolher Palavra</button>
+          <span data-identifier="word" className={palavraNoFim}>{palavraOculta}</span>
         </div>
       </div>
       <div className="botoesLetras">
-        {alfabeto.map((l) => <button onClick={()=>retornaValor(l)} className={classeBotaoLetra} disabled={letrasClicadas.includes(l) ? true : teste}>{l}</button>)}
+        {alfabeto.map((l,index) => <button data-identifier="letter" onClick={()=>retornaValor(l)} key={index} className={letrasClicadas.includes(l)||desabilita===true ? "desabilitado" : "habilitado"} disabled={letrasClicadas.includes(l) ? true : desabilita}>{l.toUpperCase()}</button>)}
       </div>
       <div className="inputChutarPalavra">
         <span>Já sei a palavra!!!!</span>
-        <input value={palavraEscrita} onChange={((e)=>setPalavraEscrita(e.target.value))} disabled={teste}></input>
-        <button onClick={retornaEscrito} disabled={teste}>Chutar</button>
+        <input data-identifier="type-guess" value={palavraEscrita} onChange={((e)=>setPalavraEscrita(e.target.value))} disabled={desabilita}></input>
+        <button data-identifier="guess-button" onClick={retornaEscrito} disabled={desabilita}>Chutar</button>
       </div>
     </div>
   )

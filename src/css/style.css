@@ -1,3 +1,12 @@
+*{
+    transition: 0.1s all;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("https://c.tenor.com/spQ3GXdLq2cAAAAC/yes.gif");
+}
+
 .root{
     width: 100%;
     display: flex;
@@ -9,20 +18,37 @@
     display: flex;
     flex-direction:column;
     align-items: center;
+    border: 3px solid black;
+    background-color: #ffffff;
 }
 
 .forcaBotaoPalavra{
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    min-width: 900px;
+    margin: 20px;
 }
 .forcaBotaoPalavra img{
     width: 400px;
 }
 .botaoPalavra{
+    min-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-end;
     margin-left: 100px;
+}
+
+.escolherPalavra{
+    width: 250px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: green;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
 }
 
 .palavraForca{
@@ -43,25 +69,36 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.botoesLetras button{
-    
+.habilitado, .desabilitado{
     width: 40px;
     height: 40px;
     margin: 4px 4px;
+    border: none;
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.671);
+}
+
+.habilitado{
+    border-radius: 5px;
+    background-color: #a6f5ff9c;
+    border: 1px solid #525eff98;
 }
 
 .desabilitado {
-    background-color: rgb(134, 134, 134);
+    background-color: rgb(207, 207, 207);
     border-radius: 5px;
     border: none;
-
 }
 
 .inputChutarPalavra input{
     margin: 0 20px;
+    height: 30px;
+    width: 300px;
+    margin-bottom: 20px;
 }
 
 .inputChutarPalavra button{
