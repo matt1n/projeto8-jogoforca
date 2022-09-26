@@ -1,6 +1,4 @@
 import {useState} from "react"
-import "./css/reset.css"
-import "./css/style.css"
 import forca0 from "./assets/forca0.png"
 import forca1 from "./assets/forca1.png"
 import forca2 from "./assets/forca2.png"
@@ -10,6 +8,7 @@ import forca5 from "./assets/forca5.png"
 import forca6 from "./assets/forca6.png"
 import palavras from "./palavras.js"
 import Jogo from "./Jogo"
+import GlobalStyle from "./GlobalStyle"
 
 export default function App() {
   const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -66,7 +65,7 @@ export default function App() {
   }
 
   function retornaEscrito(){
-    if (palavraNoInput===palavra || palavraNoInput===palavraNormalizada){
+    if (palavraNoInput.toLowerCase()===palavra || palavraNoInput.toLowerCase()===palavraNormalizada){
       setPalavraOculta(palavra)
       setPalavraNoFim(`palavraForca ganhou`)
       setDesabilita(true)
@@ -80,20 +79,23 @@ export default function App() {
   }
 
   return(
-    <Jogo 
-    imagem={imagem}
-    escolherPalavra={escolherPalavra}
-    palavraNoFim={palavraNoFim}
-    palavraOculta={palavraOculta}
-    
-    palavraNoInput={palavraNoInput}
-    setPalavraNoInput={setPalavraNoInput}
-    desabilita={desabilita}
-    retornaEscrito={retornaEscrito}
-    
-    alfabeto={alfabeto}
-    retornaValor={retornaValor}
-    letrasClicadas={letrasClicadas}
-    />
+    <>
+      <GlobalStyle />
+      <Jogo 
+      imagem={imagem}
+      escolherPalavra={escolherPalavra}
+      palavraNoFim={palavraNoFim}
+      palavraOculta={palavraOculta}
+      
+      palavraNoInput={palavraNoInput}
+      setPalavraNoInput={setPalavraNoInput}
+      desabilita={desabilita}
+      retornaEscrito={retornaEscrito}
+      
+      alfabeto={alfabeto}
+      retornaValor={retornaValor}
+      letrasClicadas={letrasClicadas}
+      />
+    </>
   )
 }
