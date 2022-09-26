@@ -16,7 +16,7 @@ export default function App() {
   const [palavraOculta, setPalavraOculta] = useState('')
   const [palavraNormalizada, setPalavraNormalizada] = useState('')
   const [desabilita, setDesabilita] = useState(true)
-  const [palavraEscrita, setPalavraEscrita] = useState('')
+  const [palavraNoInput, setPalavraNoInput] = useState('')
   const [letrasClicadas, setletrasClicadas] = useState([])
   const [erros, setErros] = useState([])
   const [imagem, setImagem] = useState(forca0)
@@ -30,7 +30,6 @@ export default function App() {
     setPalavra(palavraNova[0])
     setImagem(forca0)
     setPalavraOculta(palavraNova[0].replace(/[^0]/g ,'_ '))
-    console.log(palavraNova[0],palavraNova[0].replace(/[^0]/g ,'_ '))
     setDesabilita(false)
     setletrasClicadas([])
     setPalavraNoFim('palavraForca')
@@ -40,10 +39,7 @@ export default function App() {
   function retornaValor(letra){
     const novaArray=[...letrasClicadas, letra]
     setletrasClicadas(novaArray)
-    console.log(novaArray)
-    console.log(letra)
     if (palavra.includes(letra)){
-      console.log('sim')
       const NovaLetrasClicadas = [...letrasClicadas, letra]
       const palavraDividida = palavraNormalizada.split("")
       const palavraConferida = palavraDividida.map((l)=> NovaLetrasClicadas.includes(l) ? l : "_ ")
@@ -69,21 +65,17 @@ export default function App() {
   }
 
   function retornaEscrito(){
-    // console.log(palavra)
-    // console.log(palavraEscrita)
-    if (palavraEscrita===palavra || palavraEscrita===palavraNormalizada){
-      console.log('hehehehe')
+    if (palavraNoInput===palavra || palavraNoInput===palavraNormalizada){
       setPalavraOculta(palavra)
       setPalavraNoFim(`palavraForca ganhou`)
       setDesabilita(true)
     } else {
-      console.log(`perdeu!!!!! a palavra era ${palavra}`)
       setImagem(forca6)
       setPalavraOculta(palavra)
       setPalavraNoFim(`palavraForca perdeu`)
       setDesabilita(true)
     }
-    setPalavraEscrita('')
+    setPalavraNoInput('')
   }
 
   return(
@@ -100,7 +92,7 @@ export default function App() {
       </div>
       <div className="inputChutarPalavra">
         <span>Já sei a palavra!!!!</span>
-        <input data-identifier="type-guess" value={palavraEscrita} onChange={((e)=>setPalavraEscrita(e.target.value))} disabled={desabilita}></input>
+        <input data-identifier="type-guess" value={palavraNoInput} onChange={((e)=>setPalavraNoInput(e.target.value))} disabled={desabilita}></input>
         <button data-identifier="guess-button" onClick={retornaEscrito} disabled={desabilita}>Chutar</button>
       </div>
     </div>
