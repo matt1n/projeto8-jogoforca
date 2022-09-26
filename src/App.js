@@ -9,6 +9,7 @@ import forca4 from "./assets/forca4.png"
 import forca5 from "./assets/forca5.png"
 import forca6 from "./assets/forca6.png"
 import palavras from "./palavras.js"
+import Jogo from "./Jogo"
 
 export default function App() {
   const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -79,22 +80,20 @@ export default function App() {
   }
 
   return(
-    <div className="corpo">
-      <div className="forcaBotaoPalavra">
-        <img data-identifier="game-image" src={imagem} alt="Forca"></img>
-        <div className="botaoPalavra">
-          <button data-identifier="choose-word" onClick={()=>escolherPalavra(Math.floor(Math.random() * 231))} className="escolherPalavra">Escolher Palavra</button>
-          <span data-identifier="word" className={palavraNoFim}>{palavraOculta}</span>
-        </div>
-      </div>
-      <div className="botoesLetras">
-        {alfabeto.map((l,index) => <button data-identifier="letter" onClick={()=>retornaValor(l)} key={index} className={letrasClicadas.includes(l)||desabilita===true ? "desabilitado" : "habilitado"} disabled={letrasClicadas.includes(l) ? true : desabilita}>{l.toUpperCase()}</button>)}
-      </div>
-      <div className="inputChutarPalavra">
-        <span>Já sei a palavra!!!!</span>
-        <input data-identifier="type-guess" value={palavraNoInput} onChange={((e)=>setPalavraNoInput(e.target.value))} disabled={desabilita}></input>
-        <button data-identifier="guess-button" onClick={retornaEscrito} disabled={desabilita}>Chutar</button>
-      </div>
-    </div>
+    <Jogo 
+    imagem={imagem}
+    escolherPalavra={escolherPalavra}
+    palavraNoFim={palavraNoFim}
+    palavraOculta={palavraOculta}
+    
+    palavraNoInput={palavraNoInput}
+    setPalavraNoInput={setPalavraNoInput}
+    desabilita={desabilita}
+    retornaEscrito={retornaEscrito}
+    
+    alfabeto={alfabeto}
+    retornaValor={retornaValor}
+    letrasClicadas={letrasClicadas}
+    />
   )
 }
